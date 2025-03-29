@@ -29,11 +29,9 @@ export default function Home() {
     <div className="flex min-h-full flex-col justify-center px-6 py-39 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2
-            className="font-semibold px-25 flex items-center gap-2"
-            style={{ color: "#778da9" }}
-          >
-            Welcome back
+        <h2 className="font-semibold flex items-center px-20 gap-2 whitespace-nowrap text-lg sm:text-xl" style={{ color: "#778da9" }}>
+        Welcome back
+          
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
