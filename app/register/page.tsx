@@ -125,7 +125,7 @@ const Register: NextPage = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account?{" "}
-            <Link href="/" className="font-semibold text-indigo-600 hover:text-indigo-500">
+            <Link href="/" className="font-semibold"style={{ color: "#778da9" }}>
               Sign in
             </Link>
           </p>

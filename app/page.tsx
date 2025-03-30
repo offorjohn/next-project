@@ -3,6 +3,8 @@
 
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 import FirebaseAuthButton from "../components/FirebaseAuthButton";
 
@@ -11,7 +13,10 @@ import { FiMail, FiLock } from "react-icons/fi"; // ✅ Import icons
 export default function Home() {
   const auth = getAuth();
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
+  
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,6 +25,7 @@ export default function Home() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       // Optionally, redirect or notify the user after successful sign-in.
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message);
     }
