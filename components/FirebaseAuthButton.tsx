@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { auth, signIn, logOut } from "../lib/firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 export default function FirebaseAuthButton() {
   const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -13,6 +15,13 @@ export default function FirebaseAuthButton() {
     });
     return () => unsubscribe();
   }, []);
+
+  // Navigate to dashboard when the user logs in
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard");
+    }
+  }, [user, router]);
 
   return user ? (
     <div>
