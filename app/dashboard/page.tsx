@@ -205,7 +205,7 @@ export default function InstagramUI() {
     <p className="text-lg font-bold">{displayName}</p>
     <p className="text-sm text-gray-500">{email}</p>
     {/* Icons Row */}
-    <div className="flex space-x-4 mt-4">
+    <div className="flex space-x-15 mt-4">
       <button aria-label="Home">
         <HomeIcon className="h-6 w-6 text-gray-600" />
       </button>
