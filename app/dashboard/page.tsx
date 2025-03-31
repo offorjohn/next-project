@@ -20,7 +20,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-// Mock data for stories (users).
+// Updated mock data for stories (users) with 10 users.
 const mockStories = [
   {
     id: 1,
@@ -51,6 +51,26 @@ const mockStories = [
     id: 6,
     name: 'frank',
     avatar: 'https://randomuser.me/api/portraits/men/55.jpg',
+  },
+  {
+    id: 7,
+    name: 'grace',
+    avatar: 'https://randomuser.me/api/portraits/women/50.jpg',
+  },
+  {
+    id: 8,
+    name: 'heidi',
+    avatar: 'https://randomuser.me/api/portraits/women/35.jpg',
+  },
+  {
+    id: 9,
+    name: 'ivan',
+    avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
+  },
+  {
+    id: 10,
+    name: 'judy',
+    avatar: 'https://randomuser.me/api/portraits/women/40.jpg',
   },
 ];
 
@@ -119,44 +139,7 @@ export default function InstagramUI() {
     <>
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-300">
-        <div className="mx-auto max-w-4xl px-4 py-2 flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/256px-Instagram_logo.svg.png" 
-              alt="Instagram" 
-              className="h-8"
-            />
-          </div>
-
-          {/* Search Bar */}
-          <div className="flex-grow mx-4">
-            <input 
-              type="text" 
-              placeholder="Search" 
-              className="w-full rounded-md bg-gray-100 border border-gray-300 py-1 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
-            />
-          </div>
-
-          {/* Navigation Icons */}
-          <div className="flex space-x-4 items-center">
-            <a href="#" aria-label="Home" className="text-gray-600 hover:text-black">
-              <HomeIcon className="h-6 w-6" />
-            </a>
-            <a href="#" aria-label="Search" className="text-gray-600 hover:text-black">
-              <MagnifyingGlassIcon className="h-6 w-6" />
-            </a>
-            <a href="#" aria-label="New Post" className="text-gray-600 hover:text-black">
-              <PlusCircleIcon className="h-6 w-6" />
-            </a>
-            <a href="#" aria-label="Activity" className="text-gray-600 hover:text-black">
-              <HeartIcon className="h-6 w-6" />
-            </a>
-            <a href="#" aria-label="Profile" className="text-gray-600 hover:text-black">
-              <UserIcon className="h-6 w-6" />
-            </a>
-          </div>
-        </div>
+        {/* Header content */}
       </header>
 
       {/* Main Content */}
@@ -166,14 +149,14 @@ export default function InstagramUI() {
           <div className="flex space-x-4 overflow-x-auto py-2">
             {mockStories.map((story) => (
               <div key={story.id} className="flex flex-col items-center">
-                <div className="w-16 h-16 rounded-full border-2 border-red-500 p-1">
+                <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full border-2 border-red-500 p-1">
                   <img 
                     src={story.avatar} 
                     alt={story.name} 
                     className="w-full h-full rounded-full object-cover"
                   />
                 </div>
-                <span className="text-xs mt-1">{story.name}</span>
+                <span className="text-xs lg:text-base mt-1">{story.name}</span>
               </div>
             ))}
           </div>
