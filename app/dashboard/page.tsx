@@ -198,24 +198,39 @@ export default function InstagramUI() {
           ))}
         </section>
 
-        {/* Footer with user info and logout button */}
-        <section className="mt-10 text-center">
-          <div className="flex flex-col items-center space-y-2">
-            <img 
-              src={photoURL} 
-              alt="User avatar" 
-              className="w-16 h-16 rounded-full object-cover"
-            />
-            <p className="text-lg font-bold">{displayName}</p>
-            <p className="text-sm text-gray-500">{email}</p>
-            <button 
-              onClick={logOut} 
-              className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md"
-            >
-              Logout
-            </button>
-          </div>
-        </section>
+       {/* Footer with user info and logout button */}
+<section className="mt-10 text-center">
+  <div className="flex flex-col items-center space-y-2">
+   
+    <p className="text-lg font-bold">{displayName}</p>
+    <p className="text-sm text-gray-500">{email}</p>
+    {/* Icons Row */}
+    <div className="flex space-x-4 mt-4">
+      <button aria-label="Home">
+        <HomeIcon className="h-6 w-6 text-gray-600" />
+      </button>
+      <button aria-label="Search">
+        <MagnifyingGlassIcon className="h-6 w-6 text-gray-600" />
+      </button>
+      <button aria-label="Add">
+        <PlusCircleIcon className="h-6 w-6 text-gray-600" />
+      </button>
+      <button aria-label="Likes">
+        <HeartIcon className="h-6 w-6 text-gray-600" />
+      </button>
+      <button aria-label="Profile">
+        <UserIcon className="h-6 w-6 text-gray-600" />
+      </button>
+    </div>
+    <button 
+      onClick={logOut} 
+      className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md"
+    >
+      Logout
+    </button>
+  </div>
+</section>
+
       </main>
     </>
   );
