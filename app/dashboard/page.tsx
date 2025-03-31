@@ -113,7 +113,7 @@ export default function InstagramUI() {
     <>
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-300 py-4">
-        <div className="mx-auto max-w-6xl px-6 flex items-center justify-between">
+        <div className="mx-auto max-w-6xl px-3 lg:px-33 flex items-center justify-between">
           {/* Logo or Brand can be added here */}
 
           {/* Sliding Navigation */}
