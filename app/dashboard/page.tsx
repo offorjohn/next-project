@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { auth, logOut } from "../../lib/firebase";
+import { motion } from "framer-motion";
 
 // Import icons from Heroicons.
 import {
@@ -20,58 +21,30 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
+// Navigation items array (defined once)
+const navigationItems = [
+  "Flirt",
+  "Marriage",
+  "Language",
+  "Culture",
+  "Community",
+  "Dating Tips",
+  "Success Stories",
+  "Events",
+];
+
 // Updated mock data for stories (users) with 10 users.
 const mockStories = [
-  {
-    id: 1,
-    name: 'alice',
-    avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
-  },
-  {
-    id: 2,
-    name: 'bob',
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-  },
-  {
-    id: 3,
-    name: 'carol',
-    avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
-  },
-  {
-    id: 4,
-    name: 'dave',
-    avatar: 'https://randomuser.me/api/portraits/men/76.jpg',
-  },
-  {
-    id: 5,
-    name: 'eve',
-    avatar: 'https://randomuser.me/api/portraits/women/22.jpg',
-  },
-  {
-    id: 6,
-    name: 'frank',
-    avatar: 'https://randomuser.me/api/portraits/men/55.jpg',
-  },
-  {
-    id: 7,
-    name: 'grace',
-    avatar: 'https://randomuser.me/api/portraits/women/50.jpg',
-  },
-  {
-    id: 8,
-    name: 'heidi',
-    avatar: 'https://randomuser.me/api/portraits/women/35.jpg',
-  },
-  {
-    id: 9,
-    name: 'ivan',
-    avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
-  },
-  {
-    id: 10,
-    name: 'judy',
-    avatar: 'https://randomuser.me/api/portraits/women/40.jpg',
-  },
+  { id: 1, name: 'alice', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
+  { id: 2, name: 'bob', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
+  { id: 3, name: 'carol', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
+  { id: 4, name: 'dave', avatar: 'https://randomuser.me/api/portraits/men/76.jpg' },
+  { id: 5, name: 'eve', avatar: 'https://randomuser.me/api/portraits/women/22.jpg' },
+  { id: 6, name: 'frank', avatar: 'https://randomuser.me/api/portraits/men/55.jpg' },
+  { id: 7, name: 'grace', avatar: 'https://randomuser.me/api/portraits/women/50.jpg' },
+  { id: 8, name: 'heidi', avatar: 'https://randomuser.me/api/portraits/women/35.jpg' },
+  { id: 9, name: 'ivan', avatar: 'https://randomuser.me/api/portraits/men/45.jpg' },
+  { id: 10, name: 'judy', avatar: 'https://randomuser.me/api/portraits/women/40.jpg' },
 ];
 
 // Mock data for posts.
@@ -111,6 +84,7 @@ const mockPosts = [
 export default function InstagramUI() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -138,8 +112,27 @@ export default function InstagramUI() {
   return (
     <>
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-300">
-        {/* Header content */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-300 py-4">
+        <div className="mx-auto max-w-6xl px-6 flex items-center justify-between">
+          {/* Logo or Brand can be added here */}
+
+          {/* Sliding Navigation */}
+          <motion.div 
+            ref={containerRef} 
+            className="overflow-x-auto scrollbar-hide flex space-x-6 w-full px-4"
+            whileTap={{ cursor: "grabbing" }}
+          >
+            {navigationItems.map((item, index) => (
+              <a
+                key={index}
+                href="#"
+                className="text-lg font-semibold text-gray-700 hover:text-black whitespace-nowrap"
+              >
+                {item}
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </header>
 
       {/* Main Content */}
@@ -149,7 +142,7 @@ export default function InstagramUI() {
           <div className="flex space-x-4 overflow-x-auto py-2">
             {mockStories.map((story) => (
               <div key={story.id} className="flex flex-col items-center">
-                <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full border-2 border-red-500 p-1">
+                <div className="w-16 h-16 lg:w-24 lg:h-24 rounded-full border-2 border-purple-500 p-1">
                   <img 
                     src={story.avatar} 
                     alt={story.name} 
