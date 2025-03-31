@@ -46,7 +46,6 @@ const mockStories = [
   { id: 9, name: 'ivan', avatar: 'https://randomuser.me/api/portraits/men/45.jpg' },
   { id: 10, name: 'judy', avatar: 'https://randomuser.me/api/portraits/women/40.jpg' },
 ];
-
 // Mock data for posts.
 const mockPosts = [
   {
@@ -79,7 +78,58 @@ const mockPosts = [
     caption: 'Adventure time! #travel',
     likes: 200,
   },
+  {
+    id: 4,
+    user: {
+      name: 'dave',
+      avatar: 'https://randomuser.me/api/portraits/men/76.jpg',
+    },
+    image: 'https://picsum.photos/seed/pic4/600/600',
+    caption: 'Working hard or hardly working?',
+    likes: 87,
+  },
+  {
+    id: 5,
+    user: {
+      name: 'eve',
+      avatar: 'https://randomuser.me/api/portraits/women/22.jpg',
+    },
+    image: 'https://picsum.photos/seed/pic5/600/600',
+    caption: 'Life is a beautiful journey.',
+    likes: 150,
+  },
+  {
+    id: 6,
+    user: {
+      name: 'frank',
+      avatar: 'https://randomuser.me/api/portraits/men/55.jpg',
+    },
+    image: 'https://picsum.photos/seed/pic6/600/600',
+    caption: 'Coffee time ☕',
+    likes: 110,
+  },
+  {
+    id: 7,
+    user: {
+      name: 'grace',
+      avatar: 'https://randomuser.me/api/portraits/women/50.jpg',
+    },
+    image: 'https://picsum.photos/seed/pic7/600/600',
+    caption: 'Sunset vibes 🌅',
+    likes: 170,
+  },
+  {
+    id: 8,
+    user: {
+      name: 'heidi',
+      avatar: 'https://randomuser.me/api/portraits/women/35.jpg',
+    },
+    image: 'https://picsum.photos/seed/pic8/600/600',
+    caption: 'Exploring new horizons.',
+    likes: 130,
+  },
 ];
+
 
 export default function InstagramUI() {
   const router = useRouter();
