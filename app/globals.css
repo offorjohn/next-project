@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "flowbite/src/themes/default";
+
+@plugin "flowbite/plugin";
+
+@source "../node_modules/flowbite";
 
 :root {
   --background: hsl(99%, 43%, 0);
@@ -18,6 +23,10 @@
     --foreground: #ededed;
   }
 }
+
+
+@source "../node_modules/flowbite";
+
 
 body {
   background: var(--background);
