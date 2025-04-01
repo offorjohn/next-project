@@ -271,8 +271,8 @@ export default function InstagramUI() {
   <div className="flex flex-col items-center space-y-1">
     <p className="text-sm font-bold">{displayName}</p>
     <p className="text-xs text-gray-500">{email}</p>
-    {/* Icons Row */}
-    <div className="flex space-x-15 mt-2">
+    {/* Icons Row */}<div className="flex space-x-10 sm:space-x-15 mt-2">
+
       <button aria-label="Home">
         <HomeIcon className="h-8 w-8 text-gray-600" />
       </button>
