@@ -177,6 +177,7 @@ export default function InstagramUI() {
     <>
       {/* ToastContainer added for displaying toasts */}
       <ToastContainer position="top-right" autoClose={3000} />
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-300 py-4">
         <div className="mx-auto max-w-6xl px-3 lg:px-33 flex items-center justify-between">
@@ -201,7 +202,7 @@ export default function InstagramUI() {
       </header>
 
       {/* Main Content */}
-      <main className="mx-auto max-w-4xl px-4 py-6">
+      <main className="mx-auto max-w-4xl px-4 py-6 mb-20">
         {/* Stories Section */}
         <section className="mb-6">
           <div className="flex space-x-4 overflow-x-auto py-2">
@@ -246,10 +247,10 @@ export default function InstagramUI() {
               <div className="p-4">
                 <div className="flex space-x-4 mb-2">
                   <button aria-label="Like">
-                    <HeartIcon className="h-6 w-6 text-gray-600 hover:text-red-500" />
+                    <HeartIcon className="h-8 w-8 text-gray-600 hover:text-red-500" />
                   </button>
                   <button aria-label="Comment">
-                    <MagnifyingGlassIcon className="h-6 w-6 text-gray-600 hover:text-black" />
+                    <MagnifyingGlassIcon className="h-8 w-8 text-gray-600 hover:text-black" />
                   </button>
                 </div>
                 {/* Likes and Caption */}
@@ -262,39 +263,41 @@ export default function InstagramUI() {
             </div>
           ))}
         </section>
-
-        {/* Footer with user info and logout button */}
-        <section className="mt-10 text-center">
-          <div className="flex flex-col items-center space-y-2">
-            <p className="text-lg font-bold">{displayName}</p>
-            <p className="text-sm text-gray-500">{email}</p>
-            {/* Icons Row */}
-            <div className="flex space-x-15 mt-4">
-              <button aria-label="Home">
-                <HomeIcon className="h-6 w-6 text-gray-600" />
-              </button>
-              <button aria-label="Search">
-                <MagnifyingGlassIcon className="h-6 w-6 text-gray-600" />
-              </button>
-              <button aria-label="Add">
-                <PlusCircleIcon className="h-6 w-6 text-gray-600" />
-              </button>
-              <button aria-label="Likes">
-                <HeartIcon className="h-6 w-6 text-gray-600" />
-              </button>
-              <button aria-label="Profile">
-                <UserIcon className="h-6 w-6 text-gray-600" />
-              </button>
-            </div>
-            <button 
-              onClick={handleLogOut} 
-              className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md"
-            >
-              Logout
-            </button>
-          </div>
-        </section>
       </main>
+
+      {/* Sticky Footer */}
+      {/* Sticky Footer */}
+<footer className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 p-2 z-50">
+  <div className="flex flex-col items-center space-y-1">
+    <p className="text-sm font-bold">{displayName}</p>
+    <p className="text-xs text-gray-500">{email}</p>
+    {/* Icons Row */}
+    <div className="flex space-x-15 mt-2">
+      <button aria-label="Home">
+        <HomeIcon className="h-8 w-8 text-gray-600" />
+      </button>
+      <button aria-label="Search">
+        <MagnifyingGlassIcon className="h-8 w-8 text-gray-600" />
+      </button>
+      <button aria-label="Add">
+        <PlusCircleIcon className="h-8 w-8 text-gray-600" />
+      </button>
+      <button aria-label="Likes">
+        <HeartIcon className="h-8 w-8 text-gray-600" />
+      </button>
+      <button aria-label="Profile">
+        <UserIcon className="h-8 w-8 text-gray-600" />
+      </button>
+    </div>
+    <button 
+      onClick={handleLogOut} 
+      className="mt-1 px-3 py-1 bg-red-500 text-white rounded-md text-sm"
+    >
+      Logout
+    </button>
+  </div>
+</footer>
+
     </>
   );
 }
