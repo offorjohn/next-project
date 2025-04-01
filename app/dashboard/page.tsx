@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
@@ -6,6 +7,9 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { auth, logOut } from "../../lib/firebase";
 import { motion } from "framer-motion";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Import icons from Heroicons.
 import {
@@ -130,7 +134,6 @@ const mockPosts = [
   },
 ];
 
-
 export default function InstagramUI() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -150,6 +153,17 @@ export default function InstagramUI() {
     return () => unsubscribe();
   }, [router]);
 
+  // Logout handler with toast notifications.
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      toast.success("Logged out successfully!");
+      router.push("/");
+    } catch (error: any) {
+      toast.error("Error logging out: " + error.message);
+    }
+  };
+
   if (loading) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
@@ -161,11 +175,12 @@ export default function InstagramUI() {
 
   return (
     <>
+      {/* ToastContainer added for displaying toasts */}
+      <ToastContainer position="top-right" autoClose={3000} />
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-300 py-4">
         <div className="mx-auto max-w-6xl px-3 lg:px-33 flex items-center justify-between">
           {/* Logo or Brand can be added here */}
-
           {/* Sliding Navigation */}
           <motion.div 
             ref={containerRef} 
@@ -248,39 +263,37 @@ export default function InstagramUI() {
           ))}
         </section>
 
-       {/* Footer with user info and logout button */}
-<section className="mt-10 text-center">
-  <div className="flex flex-col items-center space-y-2">
-   
-    <p className="text-lg font-bold">{displayName}</p>
-    <p className="text-sm text-gray-500">{email}</p>
-    {/* Icons Row */}
-    <div className="flex space-x-15 mt-4">
-      <button aria-label="Home">
-        <HomeIcon className="h-6 w-6 text-gray-600" />
-      </button>
-      <button aria-label="Search">
-        <MagnifyingGlassIcon className="h-6 w-6 text-gray-600" />
-      </button>
-      <button aria-label="Add">
-        <PlusCircleIcon className="h-6 w-6 text-gray-600" />
-      </button>
-      <button aria-label="Likes">
-        <HeartIcon className="h-6 w-6 text-gray-600" />
-      </button>
-      <button aria-label="Profile">
-        <UserIcon className="h-6 w-6 text-gray-600" />
-      </button>
-    </div>
-    <button 
-      onClick={logOut} 
-      className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md"
-    >
-      Logout
-    </button>
-  </div>
-</section>
-
+        {/* Footer with user info and logout button */}
+        <section className="mt-10 text-center">
+          <div className="flex flex-col items-center space-y-2">
+            <p className="text-lg font-bold">{displayName}</p>
+            <p className="text-sm text-gray-500">{email}</p>
+            {/* Icons Row */}
+            <div className="flex space-x-15 mt-4">
+              <button aria-label="Home">
+                <HomeIcon className="h-6 w-6 text-gray-600" />
+              </button>
+              <button aria-label="Search">
+                <MagnifyingGlassIcon className="h-6 w-6 text-gray-600" />
+              </button>
+              <button aria-label="Add">
+                <PlusCircleIcon className="h-6 w-6 text-gray-600" />
+              </button>
+              <button aria-label="Likes">
+                <HeartIcon className="h-6 w-6 text-gray-600" />
+              </button>
+              <button aria-label="Profile">
+                <UserIcon className="h-6 w-6 text-gray-600" />
+              </button>
+            </div>
+            <button 
+              onClick={handleLogOut} 
+              className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md"
+            >
+              Logout
+            </button>
+          </div>
+        </section>
       </main>
     </>
   );

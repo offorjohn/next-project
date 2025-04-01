@@ -8,14 +8,14 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import FirebaseAuthButton from "../components/FirebaseAuthButton";
 
-import { FiMail, FiLock } from "react-icons/fi"; // ✅ Import icons
+import { FiMail, FiLock } from "react-icons/fi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const auth = getAuth();
   const [email, setEmail] = useState("");
-
   const [password, setPassword] = useState("");
-  
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
@@ -24,20 +24,22 @@ export default function Home() {
     setError(null);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Optionally, redirect or notify the user after successful sign-in.
+      toast.success("Login successful!");
       router.push("/dashboard");
     } catch (err: any) {
       setError(err.message);
+      toast.error(err.message);
     }
   };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-39 lg:px-8">
+      {/* ToastContainer added for displaying toasts */}
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="font flex items-center px-20 gap-2 whitespace-nowrap text-lg sm:text-xl">
-        Welcome back
-          
+          <h2 className="font flex items-center px-20 gap-2 whitespace-nowrap text-lg sm:text-xl">
+            Welcome back
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -77,8 +79,8 @@ export default function Home() {
               </label>
             </div>
 
-         {/* Password Input */}
-         <div className="relative">
+            {/* Password Input */}
+            <div className="relative">
               <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
               <input
                 id="password"

@@ -7,6 +7,8 @@ import { NextPage } from "next";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { HiOutlineUserAdd } from "react-icons/hi"; // Register Icon
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { auth } from "../../lib/firebase"; // Use your initialized auth instance
 
@@ -24,22 +26,28 @@ const Register: NextPage = () => {
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       setSuccess("Registration successful! You can now log in.");
-      // Optionally redirect the user after successful registration.
+      toast.success("Registration successful! You can now log in.");
+      // Optionally, redirect the user after successful registration.
     } catch (err: any) {
       setError(err.message);
+      toast.error(err.message);
     }
   };
 
-  return ( <div className="flex min-h-full flex-col justify-center px-6 py-39 lg:px-8">
-    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+  return (
+    <div className="flex min-h-full flex-col justify-center px-6 py-39 lg:px-8">
+      {/* ToastContainer added for displaying toasts */}
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 className="font flex  items-center px-25 gap-2 whitespace-nowrap text-lg sm:text-xl">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h2 className="font flex items-center px-25 gap-2 whitespace-nowrap text-lg sm:text-xl">
             Register
             <HiOutlineUserAdd size={20} className="stroke-current text-inherit" />
           </h2>
@@ -114,7 +122,7 @@ const Register: NextPage = () => {
             {success && <div className="text-green-500 text-sm">{success}</div>}
 
             <div>
-            <button
+              <button
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 style={{ backgroundColor: "#415a77" }}
               >
@@ -125,7 +133,7 @@ const Register: NextPage = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account?{" "}
-            <Link href="/" className="font-semibold"style={{ color: "#778da9" }}>
+            <Link href="/" className="font-semibold" style={{ color: "#778da9" }}>
               Sign in
             </Link>
           </p>
