@@ -67,7 +67,7 @@ export default function ChatPage() {
         <img src={userAvatar} alt="Profile" className="w-10 h-10 rounded-full" />
         <div className="ml-3 flex-1">
           <h2 className="text-lg font-semibold">{userName}</h2>
-          <p className="text-sm text-gray-600">Last seen: Just now</p>
+          <p className="text-sm text-gray-600">Last seen: Just now.</p>
         </div>
         <FaPhone className="text-gray-600 mx-2 cursor-pointer" />
         <FaInfoCircle className="text-gray-600 cursor-pointer" />
