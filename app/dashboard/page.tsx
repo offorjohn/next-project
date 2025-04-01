@@ -269,8 +269,7 @@ export default function InstagramUI() {
       {/* Sticky Footer */}
 <footer className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-300 p-2 z-50">
   <div className="flex flex-col items-center space-y-1">
-    <p className="text-sm font-bold">{displayName}</p>
-    <p className="text-xs text-gray-500">{email}</p>
+   
     {/* Icons Row */}<div className="flex space-x-10 sm:space-x-15 mt-2">
 
       <button aria-label="Home">
