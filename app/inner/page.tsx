@@ -1,13 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export default function Profile() {
+function ProfileContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  
+
   const postData = searchParams.get("post") ? JSON.parse(searchParams.get("post")!) : null;
 
   if (!postData) {
@@ -48,12 +48,16 @@ export default function Profile() {
 
           {/* Action Buttons */}
           <div className="flex flex-row items-center justify-center space-x-4 mt-6">
-          <button
-  className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 transition"
-  onClick={() => router.push(`/chat?user=${encodeURIComponent(postData.user.name)}&avatar=${encodeURIComponent(postData.user.avatar)}`)}
->
-  Chat
-</button>
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 transition"
+              onClick={() =>
+                router.push(
+                  `/chat?user=${encodeURIComponent(postData.user.name)}&avatar=${encodeURIComponent(postData.user.avatar)}`
+                )
+              }
+            >
+              Chat
+            </button>
             <button className="px-4 py-2 bg-green-600 text-white rounded-full text-sm font-medium hover:bg-green-700 transition">
               Video Call
             </button>
@@ -64,5 +68,13 @@ export default function Profile() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Profile() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center h-screen">Loading...</div>}>
+      <ProfileContent />
+    </Suspense>
   );
 }
